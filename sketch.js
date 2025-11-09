@@ -105,7 +105,7 @@ function draw() {
   text("Underground Explosions", 80, height - 65);
   text("Atmospheric Explosions", 80, height - 85);
   textSize(10);
-  text("* The radius indicates the range of yield.", 40, height - 115);
+  text("* The radius indicates the yield.", 40, height - 115);
 
   drawMapBorders();
 
@@ -146,6 +146,18 @@ function draw() {
       ellipse(c.x, c.y, c.r, c.r);
     }
   }
+  stroke(0, 255, 0, 150);
+  strokeWeight(0.3);
+  line(mouseX, 0, mouseX, height);
+  line(0, mouseY, width, mouseY);
+  let mouseLon = map(mouseX, marginLeft, width - marginRight, -180, 180);
+  let mouseLat = map(mouseY, height - marginBottom, marginTop, -90, 90);
+
+  fill(0, 255, 0);
+  noStroke();
+  textSize(10);
+  textAlign(RIGHT, BOTTOM);
+  text(`Lon: ${mouseLon.toFixed(2)}, Lat: ${mouseLat.toFixed(2)}`, mouseX - 10, mouseY - 10);
 
   if (hoveredRow !== null) {
     let date = data.getString(hoveredRow, "date_DMY");
@@ -174,7 +186,7 @@ function draw() {
     noStroke();
     rect(boxX, boxY, boxW, 76, 6);
 
-    fill(255);
+    fill(0,255,0);
     textAlign(LEFT, TOP);
     text(info, boxX + padding, boxY + padding);
   }
